@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.UI;
 
 public class PlaneTracking : MonoBehaviour
 {
     public ARRaycastManager arRay;
     public Transform planeMarker;
     public GameObject arObjectPrefab;
+    public GameObject instruction;
 
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
     private Pose hitPose;
@@ -26,6 +28,7 @@ public class PlaneTracking : MonoBehaviour
                 hitPose = hits[0].pose;
                 planeMarker.position = hitPose.position;
                 planeMarker.rotation = hitPose.rotation;
+                instruction.SetActive(false);
             }
         }
 
