@@ -27,8 +27,10 @@ public class EyeInstantiate : MonoBehaviour
         // leftEyeStartPos.x += 1.0f;
 
         // rightEyeStartPos = new Vector3(CameraPos.x -6f, CameraPos.y + 2.5f, CameraPos.z + 0.5f);
-        Instantiate(EyePrefab, rightEyeStartPos, Quaternion.Euler(0,-90,0), CameraTrans);
-        Instantiate(EyePrefab, leftEyeStartPos, Quaternion.Euler(0,-90,0), CameraTrans);
+        GameObject righteye = Instantiate(EyePrefab, rightEyeStartPos, Quaternion.Euler(0,-90,0), CameraTrans) as GameObject;
+        righteye.name = "righteye";
+        GameObject lefteye = Instantiate(EyePrefab, leftEyeStartPos, Quaternion.Euler(0,-90,0), CameraTrans) as GameObject;
+        lefteye.name = "lefteye";
         // Instantiate(EyePrefab, rightEyeStartPos, Quaternion.Euler(0,0,0), CameraTrans);
         // Instantiate(EyePrefab, leftEyeStartPos, Quaternion.Euler(0,0,0), CameraTrans);
     }
