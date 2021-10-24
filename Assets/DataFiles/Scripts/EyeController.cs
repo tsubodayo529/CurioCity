@@ -73,9 +73,23 @@ public class EyeController : MonoBehaviour
     void Update() 
     {
 
-        transform.LookAt(Camera.main.transform.position);
+        // transform.LookAt(Camera.main.transform.position);
         
-        transform.Rotate(new Vector3(0f,90f,0f));
+        // transform.Rotate(new Vector3(0f,90f,0f));
+
+    //y軸のみ回転する処理
+    
+            // var direction = Camera.main.transform.position - transform.position;
+            // // direction.y = 0;
+            // // direction.z = 0;
+ 
+            // var lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+            // transform.rotation = lookRotation;
+            // transform.Rotate(new Vector3(0f,90f,0f));
+            // transform.Rotate(new Vector3(0f,90f,0f));
+        
+
+
         // transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y-90f, transform.rotation.z);
         // transform.rotation = Quaternion.identity;
         // transform.rotation = Quaternion.Euler(0,Camera.main.transform.localEulerAngles.y -180,0);
