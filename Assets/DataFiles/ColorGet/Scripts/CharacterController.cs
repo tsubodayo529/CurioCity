@@ -74,9 +74,8 @@ public class CharacterController : MonoBehaviour
         if(Input.GetMouseButtonDown(1))
         {
             animator.SetTrigger("RotateNew");
-            // GameObject.transform.rotation.y = 180;
         }
-        // Debug.Log(flag);
+        
     }
 
     public void ClickDownPad(){

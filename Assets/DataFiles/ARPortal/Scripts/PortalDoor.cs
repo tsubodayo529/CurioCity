@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
+//ポータルをくぐる
+
 public class PortalDoor : MonoBehaviour
 {
     public Material[] PGMat;
@@ -17,7 +19,6 @@ public class PortalDoor : MonoBehaviour
                     mat.SetInt("stest", (int) CompareFunction.Equal);
                 }
         flower = false;
-        // WakappaMessage.GetComponent<TextMesh>().text = "みんなが見つけた自然の写真がお花になったッパ！きれいなお花畑ッパ～";
     }
 
     // Update is called once per frame

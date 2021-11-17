@@ -21,11 +21,8 @@ public class MenuCharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(Input.GetMouseButtonDown(0))
-        // {
-        //     Debug.Log("ukiuki");
-        //     animator.SetTrigger("Ukiuki");
-        // }
+//ランダムにキャラクターが言葉を喋ってアニメーションする
+
         if(AnimationTransition == true)
         {
             AnimationTransition = false;

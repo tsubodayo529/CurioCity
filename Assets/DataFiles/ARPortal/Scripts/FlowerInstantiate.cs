@@ -11,7 +11,6 @@ public class FlowerInstantiate : MonoBehaviour
     public Transform parentPos;
     GameObject obj;
 
-    //parentPosに足したりしなきゃいけないのかもしれない
 
     //xMin < x < xMaxかつ zMin < z < zMax のときは描画しない
 
@@ -47,47 +46,6 @@ public class FlowerInstantiate : MonoBehaviour
     {   
         id = "0";
         StartCoroutine(GetFlowerNumber());
-        // Debug.Log(length);
-        // parent.SetActive(false);
-        // // PortalDoor = GameObject.Find("PortalDoor");
-
-
-
-        // startNum =1;
-        // flowerRotate = 1;
-        // x = 1;
-        // z = 1;
-
-
-        // for (int i = 0; i<length; i++)
-        // {
-        //     if(i!=0)
-        //     {
-        //         if(startNum==1)
-        //         {
-        //             FlowerCircleZ(-1,2);
-        //         }
-
-        //         else if(startNum==2)
-        //         {
-        //             FlowerCircleX(-1,3);
-        //         }
-
-        //         else if(startNum==3)
-        //         {
-        //             FlowerCircleZ(1,4);
-        //         }
-
-        //         else if(startNum==4)
-        //         {
-        //             FlowerCircleX(1,1);
-        //         }
-        //     }
-        //     else
-        //     {
-        //         Instantiate(prefab, new Vector3(0,0.5f,0), Quaternion.identity);
-        //     }
-        // }
     }
 
 
@@ -109,6 +67,7 @@ public class FlowerInstantiate : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("id", id);
         using(UnityWebRequest www = UnityWebRequest.Post("https://tsubodayo529.sakura.ne.jp/CurioCityDB/GetFlowerNum.php", form))
+        //phpから画像の枚数を取得
         {
             yield return www.SendWebRequest();
             if(www.isNetworkError || www.isHttpError)
@@ -119,14 +78,13 @@ public class FlowerInstantiate : MonoBehaviour
             {
                 string text = www.downloadHandler.text;
                 length = int.Parse(text);
+                //見栄え良くするための100倍
                 length = length*100;
-                // length = 1000;
                 Debug.Log(length);
                 
             }
         }
          parent.SetActive(false);
-        // PortalDoor = GameObject.Find("PortalDoor");
 
 
 
@@ -137,8 +95,7 @@ public class FlowerInstantiate : MonoBehaviour
         x = 0;
         z = 8;
 
-        //仮
-        // length = 1000;
+        
 
 
         for (i = 0; i<length; i++)
@@ -170,7 +127,6 @@ public class FlowerInstantiate : MonoBehaviour
                 obj = Instantiate(prefab, new Vector3(x,y,z), Quaternion.identity, parentPos);
                 x += 1;
                 z += 1;
-                // obj.transform.SetParent(parentPos);
             }
         }
     }
@@ -192,7 +148,6 @@ public class FlowerInstantiate : MonoBehaviour
 
             obj = Instantiate(prefab, new Vector3(x, y, z), Quaternion.identity, parentPos);
             z += addNum;
-            // obj.transform.SetParent(parentPos);
             
             if(z == flowerRotate *addNum)
             {
@@ -224,7 +179,6 @@ public class FlowerInstantiate : MonoBehaviour
 
             obj = Instantiate(prefab, new Vector3(x, y, z), Quaternion.identity,parentPos);
             x += addNum;
-            // obj.transform.SetParent(parentPos);
             
             if(x == flowerRotate *addNum)
             {

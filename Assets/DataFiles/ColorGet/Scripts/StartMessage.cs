@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//初期メッセージ
+
 public class StartMessage : MonoBehaviour
 {
     float messageNum;

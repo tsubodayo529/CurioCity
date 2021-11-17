@@ -11,8 +11,7 @@ public class GetColor : MonoBehaviour
 
     public GameObject tapEffect;
 
-        //charactercontrollerからflagの値を取得してくる
-    // public GameObject character;
+    
     GameObject character;
     CharacterController characterController;
 
@@ -29,19 +28,9 @@ public class GetColor : MonoBehaviour
 
     void Start()
     {
-        tex = new Texture2D(1, 1, TextureFormat.RGB24, false);
-        // RandomMessage();
-        
-        
-        // cloth.color = Color.blue;
-        
-        
+        tex = new Texture2D(1, 1, TextureFormat.RGB24, false);    
     }
 
-    // public void OnClick()
-    // {
-    //     StartCoroutine(GetColorCoroutine());
-    // }
 
     private void Update() {
         character = GameObject.Find("PlayerFix(Clone)");
@@ -62,6 +51,7 @@ public class GetColor : MonoBehaviour
         }
     }
 
+//色を取得する
     private IEnumerator GetColorCoroutine()
     {
         // 色取得メソッドをコルーチン化し、実際の色取得をフレーム末尾まで遅延させて
@@ -74,15 +64,13 @@ public class GetColor : MonoBehaviour
         Vector3 TapEffectScreenPoint = new Vector3(pos.x, pos.y, 1.0f);
         Vector3 TapEffectWorldPoint = Camera.main.ScreenToWorldPoint(TapEffectScreenPoint);
         Instantiate(tapEffect, TapEffectWorldPoint, Camera.main.transform.rotation);
-        // Instantiate(tapEffect, TapEffectWorldPoint, Quaternion.identity);
-        //タップエフェクトが常にARカメラの方向を向くようにする
-        // Vector3 CameraPos = Camera.main.transform.position;
-        // tapEffect.transform.LookAt(CameraPos);
         message.text = "すてきな服ッパ！ありがとうッパ！！";
         yield return new WaitForSeconds(5);
         RandomMessage();
     }
 
+
+//色取得後に新しく流れるメッセージ
     public void RandomMessage(){
         messageNum = Random.Range(0f, 5f);
         messageNum = Mathf.Floor(messageNum);

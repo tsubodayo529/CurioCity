@@ -41,69 +41,10 @@ public class GetData : MonoBehaviour
                 //GetData.phpで取得してきた画像ファイル名を分割する
                 string text = www.downloadHandler.text;
                 //画像ファイルの数を取得、text内における/の数を数える
-                int length = CountChar(text, "/"); //必要なかったかもしれない
-                // Debug.Log(length);
-                string[] fileNames = text.Split('/');
-                // foreach (var fileName in fileNames)
-                // {
-                //     Debug.Log(fileName);
-                //     imgUrl = "http://localhost:8888/php/phptest2/images/" + fileName;
-                //     UnityWebRequest reg = UnityWebRequestTexture.GetTexture(imgUrl);
-                //     yield return reg.SendWebRequest();
-
-                //     if(reg.isNetworkError || reg.isHttpError)
-                //     {
-                //         Debug.Log(reg.error);
-                //     }
-                //     else
-                //     {
-                //         Texture2D img = ((DownloadHandlerTexture)reg.downloadHandler).texture;
-                //         image.sprite = Sprite.Create(img, new Rect(0, 0, 400, 400), Vector2.zero);
-                //     }
-                //     // Debug.Log("0番目は" + fileNames[0]);
-                        
-                    StartCoroutine(InstatiateImage(length, fileNames)); //以下の操作を関数化
-                // }
-
-                // for(int i = 0; i < length; i++)
-                // {
-                    // Instantiate(prefab, new Vector3(i * 150.0f, 100.0f, 0), Quaternion.identity, parent);
-                    // imgUrl = "http://localhost:8888/php/phptest2/images/" + fileNames[i];
-                    // UnityWebRequest reg = UnityWebRequestTexture.GetTexture(imgUrl);
-                    // yield return reg.SendWebRequest();
-                    // Debug.Log(i + "番目は" + fileNames[i]);
-                    // Debug.Log(i + "番目は" + imgUrl);
-                    // Debug.Log(reg);
-
-                    // if(reg.isNetworkError || reg.isHttpError)
-                    // {
-                    //     Debug.Log(reg.error);
-                    // }
-                    // else
-                    // {
-                    //     Texture2D img = ((DownloadHandlerTexture)reg.downloadHandler).texture;
-                    //     // image.sprite = Sprite.Create(img, new Rect(0, 0, 400, 400), Vector2.zero);
-                    //     prefab.sprite = Sprite.Create(img, new Rect(0, 0, 400, 400), Vector2.zero);
-                    // }
-
-                    
-
-                // }
-                // Debug.Log("imgURL : " + www.downloadHandler.text);
-                // imgUrl = "http://localhost:8888/php/phptest2/images/" + www.downloadHandler.text;
+                int length = CountChar(text, "/");
+                string[] fileNames = text.Split('/');                 
+                StartCoroutine(InstatiateImage(length, fileNames));
             }
-        // UnityWebRequest reg = UnityWebRequestTexture.GetTexture(imgUrl);
-        // yield return reg.SendWebRequest();
-
-        // if(reg.isNetworkError || reg.isHttpError)
-        // {
-        //     Debug.Log(reg.error);
-        // }
-        // else
-        // {
-        //     Texture2D img = ((DownloadHandlerTexture)reg.downloadHandler).texture;
-        //     image.sprite = Sprite.Create(img, new Rect(0, 0, 400, 400), Vector2.zero);
-        // }
         }
 
     }
@@ -124,15 +65,11 @@ public class GetData : MonoBehaviour
             imgUrl = "https://tsubodayo529.sakura.ne.jp/CurioCityDB/images/" + fileNames[i];
             reg = UnityWebRequestTexture.GetTexture(imgUrl);
             yield return reg.SendWebRequest();
-            Debug.Log(i + "番目は" + fileNames[i]);
-            Debug.Log(i + "番目は" + imgUrl);
-            Debug.Log(reg.downloadHandler);
             
             int m = i % 2;
             if(m==0){
                 n += 1;
             }
-            // yield return new WaitForSeconds(3);
 
             if(reg.isNetworkError || reg.isHttpError)
             {
@@ -140,9 +77,7 @@ public class GetData : MonoBehaviour
             }
             else
             {
-                // Texture2D img = ((DownloadHandlerTexture)reg.downloadHandler).texture;
                 Texture2D img = DownloadHandlerTexture.GetContent(reg);
-                Debug.Log("Width :" +img.width); //widthを取得できた
                 image.sprite = Sprite.Create(img, new Rect(0, 0, img.width, img.height), Vector2.zero);
                 Instantiate(prefab, new Vector3(m * 350.0f + 185.0f, 1000.0f-n*350.0f, 0), Quaternion.identity, parent);
             }

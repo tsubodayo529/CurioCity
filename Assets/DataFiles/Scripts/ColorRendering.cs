@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//ドラッグで画面上に線を引くスクリプト
 public class ColorRendering : MonoBehaviour
 {
     private LineRenderer lineRenderer;
     private int positionCount; //マウス位置をカウントして入れていく
     private Camera mainCamera;
 
-    public bool flag;
+    public bool flag; //flagがtrueで線を描ける
+
 
     public Color color;
 
@@ -36,11 +38,6 @@ public class ColorRendering : MonoBehaviour
         positionCount = 0;
         mainCamera = Camera.main; //mainタグのついているカメラを代入
         flag = true;
-        // lineRenderer.material.color = color;
-        Debug.Log("色は" +color);
-        // instanciateBrushes = GetComponent<InstanciateBrushes>();
-        // drawStart = instanciateBrushes.drawStart;
-        // Debug.Log(drawStart);
         
     }
 
@@ -55,6 +52,8 @@ public class ColorRendering : MonoBehaviour
             //Rayがオブジェクトに当たっている場合はlineRenderしない
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+
+            //目を動かすときには絵を書かないようにする処理
             if(Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 flag = false;
@@ -69,7 +68,6 @@ public class ColorRendering : MonoBehaviour
 
                 // 座標指定の設定をローカル座標系にしたため、与える座標にも手を加える
                 Vector3 pos = Input.mousePosition; //クリック位置をposに代入
-                // pos.z = 10.0f; 
                 //入力位置をtransform.positionで設定したz位置に設定
                     pos.z = 10.0f;
 
@@ -81,7 +79,6 @@ public class ColorRendering : MonoBehaviour
 
                 // マウススクリーン座標をワールド座標に直す
                 // z値を設定してあげたのでScreenToWorldPointを使用できる
-                // public Vector3 ScreenToWorldPoint (Vector3 position);
                 pos = mainCamera.ScreenToWorldPoint(pos);
 
                 // さらにそれをローカル座標に直す。
@@ -98,25 +95,9 @@ public class ColorRendering : MonoBehaviour
         if (Input.GetMouseButtonUp(0)) //クリックが離れたら
         {   flag = false;
         }
-
-        if(Input.GetMouseButton(1) && flag == true){
-            //線が選択した色になる
-            lineRenderer.material.color = color;
-            // lineRenderer.material.color = Color.red;
-            Vector3 pos = Input.mousePosition; //クリック位置をposに代入
-            pos.z = 10.0f;
-            pos = mainCamera.ScreenToWorldPoint(pos);
-            pos = transform.InverseTransformPoint(pos);
-            positionCount++;
-            lineRenderer.positionCount = positionCount;
-            lineRenderer.SetPosition(positionCount - 1, pos);
-        }
-        if (Input.GetMouseButtonUp(1)) //クリックが離れたら
-        {   flag = false;
-        }
     }
 
-//ブラシ色変更
+//ブラシ色設定
     public void Red1ButtonPush(){
         color = new Color(0.8862746f,0.29f,0.26f);
     }
@@ -215,7 +196,7 @@ public class ColorRendering : MonoBehaviour
 
 
 
-//ブラシサイズ変更
+//ブラシサイズ設定
     public void WideButtonPush(){
         brushSize = 1.0f;
     }

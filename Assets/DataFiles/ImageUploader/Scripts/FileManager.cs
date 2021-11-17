@@ -20,26 +20,6 @@ public class FileManager : MonoBehaviour
         SendEndMessage.SetActive(false);
             }
 
-    // public void OpenExplorer(){
-    //     path = EditorUtility.OpenFilePanel("画像を選択してください", "", "png,jpg,jpeg");
-    //     GetImage();
-
-    // }
-
-    // void GetImage(){
-    //     if(path != null){
-    //         UpdateImage();
-    //     }
-    // }
-
-    // void UpdateImage(){
-    //     WWW www = new WWW("file:///" + path);
-    //     image.texture = www.texture;
-    //     image.FixAspect();
-    //     // float rate = (float)image.texture.width / image.texture.height;
-    //     // float imageHeight = image.rectTransform.sizeDelta.y;
-    //     // image.rectTransform.sizeDelta = new Vector2(500, 500);
-    // }
 
 
     public void Send(){
@@ -71,20 +51,10 @@ public class FileManager : MonoBehaviour
         result.Apply();
         RenderTexture.active = currentRT;
 
-        // PNGにエンコード完了
-        // var bytes = result.EncodeToPNG();
         img = result.EncodeToPNG();
-        // byte[] img = texture.EncodeToPNG();
+
         fileName = "hoge.jpg";
-        // string filePath = Application.dataPath + "/" + fileName;
-        // 画像ファイルをbyte配列に格納
-        // byte[] img = File.ReadAllBytes (filePath);
-        // byte[] img = File.ReadAllBytes (image);
-
-
-        //メモ この後はUIImage上に選択した画像が出てくるようにする、
-        //Image上に出てきた画像をPNGにEncodeする
-        //Encodeしたデータをbyte[]imgに代入する
+ 
     }
 
     // IEnumerator UploadFile() {
